@@ -1,0 +1,7 @@
+config {
+    type: "view"
+}
+
+select "Sinethemba" as first_name
+union all
+select "Yanga" as first_name
