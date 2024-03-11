@@ -1,0 +1,21 @@
+naame: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      -main
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code into workspace directory
+        uses: actions/checkout@v2
+      - name: Install project dependecies
+        uses: docker://dataformco/dataform:2.8.3
+        with:
+          args: compile
+   
