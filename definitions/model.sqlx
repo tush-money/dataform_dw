@@ -6,4 +6,4 @@ select "Sinethemba" as first_name
 union all
 select "Yanga" as first_name
 union all
-select "Sinako" as first_name
+select 1 as first_name
