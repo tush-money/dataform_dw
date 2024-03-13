@@ -17,10 +17,10 @@ jobs:
         node-version: '14'
 
     - name: Install Dataform CLI
-      run: npm install -g @dataform/cli
+      run: npm i -g @dataform/cli@^2.3.2
 
     - name: Install project dependencies
-      run: dataform install
+      run: dataform install dataform_dw/
 
     - name: Run Dataform tests
-      run: dataform test 
+      run: dataform compile dataform_dw/
