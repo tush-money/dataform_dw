@@ -1,4 +1,4 @@
-name: Dataform CI
+name: Test Workflow
 
 on: 
   pull_request:
@@ -8,16 +8,9 @@ jobs:
   dataform-test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: SQL Linting
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: '14'
-        
-    - name: Install Linter
-      run: npm install coc-sqlfluff
-      
-    - name: Run Linter
-      run: sqlfluff lint --dialect bigquery dataform_dw/definitions/
+        node-version: 18
+    - run: npm ci
+    - run: npm test
