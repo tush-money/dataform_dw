@@ -11,13 +11,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
+    - name: SQL Linting
       uses: actions/setup-node@v2
       with:
         node-version: '14'
-
-    - name: Install Dataform CLI
-      run: npm i -g @dataform/cli@^2.3.2
+        
+    - name: Install Linter
+      run: npm install -g sqlfluff
       
-    - name: Run Dataform tests
-      run: dataform compile dataform_dw/
+    - name: Run Linter
+      run: sqlfluff lint --dialect bigquery dataform_dw/definitions/
