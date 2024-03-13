@@ -21,8 +21,6 @@ jobs:
 
     - name: Install project dependencies
       run: dataform install
-      working-directory: ./dataform
 
     - name: Run Dataform tests
       run: dataform test 
-      working-directory: ./dataform
