@@ -17,7 +17,7 @@ jobs:
         node-version: '14'
         
     - name: Install Linter
-      run: npm install -g sqlfluff
+      run: npm install coc-sqlfluff
       
     - name: Run Linter
       run: sqlfluff lint --dialect bigquery dataform_dw/definitions/
