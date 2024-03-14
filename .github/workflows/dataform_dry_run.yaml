@@ -21,7 +21,7 @@ jobs:
           - name: Add execute permissions to decryption script
             run: git update-index --chmod=+x ./decrypt_credentials.sh
           - name: Decrypt Dataform Credentials
-            run: decrypt_credentials.sh 
+            run: /.decrypt_credentials.sh 
             env:
               DATAFORM_PASSPHRASE: ${{ secrets.DATAFORM_PASSPHRASE }}
           - name: Execute Dataform dry run
