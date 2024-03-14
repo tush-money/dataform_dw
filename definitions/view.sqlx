@@ -1,5 +1,6 @@
 config {
-    type: "view"
+    type: "view",
+    name: "example_view"
 }
 
 select 1
