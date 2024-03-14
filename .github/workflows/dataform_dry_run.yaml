@@ -18,16 +18,15 @@ jobs:
             uses: docker://dataformco/dataform:2.8.3
             with:
                 args: install
+                
           - name: Add execute permissions to decrytion file
             run: chmod +x ./decrypt_credentials.sh
-          - name: Run updates on container
-            run: apt-get update
-          - name: Add ca certificates
-            run : apt-get install ca-certificates
+            
           - name: Decrypt Dataform Credentials
             run: ./decrypt_credentials.sh 
             env:
               DATAFORM_PASSPHRASE: ${{ secrets.DATAFORM_PASSPHRASE }}
+              
           - name: Execute Dataform dry run
             uses: docker://dataformco/dataform:2.8.3
             with:
