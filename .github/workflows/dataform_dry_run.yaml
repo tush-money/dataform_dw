@@ -19,7 +19,7 @@ jobs:
             with:
                 args: install
           - name: Add execute permissions to decryption script
-            run: git update-index --chmod=+x ./decrypt_credentials.sh
+            run: chmod=+x ./decrypt_credentials.sh
           - name: Decrypt Dataform Credentials
             run: /.decrypt_credentials.sh 
             env:
