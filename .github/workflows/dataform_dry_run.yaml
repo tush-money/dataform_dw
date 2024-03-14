@@ -23,7 +23,7 @@ jobs:
             run: chmod +x ./decrypt_credentials.sh
 
           - name: Show secret
-            run: echo ${{ secrets.DATAFORM_PASSPHRASE }}
+            run: echo ${{ secrets.DATAFORM_PASSPHRASE }} | sed 's/ //g'
             
           - name: Decrypt Dataform Credentials
             run: ./decrypt_credentials.sh 
