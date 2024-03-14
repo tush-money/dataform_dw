@@ -1,0 +1,28 @@
+name: Dataform Compile
+
+on: 
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+    compile:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout code into workspace directory
+            uses: actions/checkout@v2
+
+          - name: Install Dataform dependencies
+            uses: docker://dataformco/dataform:2.8.3
+            with:
+                args: install
+          - name: Decrypt Dataform Credentials
+            run: ./decrypt_credentials.sh
+            env:
+              DATAFORM_PASSPHRASE: ${{secrets.DATAFORM_PASSPHRASE}}
+          - name: Execute Dataform dry run
+            uses: docker://dataformco/dataform:2.8.3
+            with:
+                args: run --dry-run
