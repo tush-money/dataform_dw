@@ -1,4 +1,4 @@
-name: Dataform Compile
+name: Dataform Dry Run
 
 on: 
   pull_request:
