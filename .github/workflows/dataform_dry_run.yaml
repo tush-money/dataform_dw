@@ -18,6 +18,8 @@ jobs:
             uses: docker://dataformco/dataform:2.8.3
             with:
                 args: install
+          - name: Add execute permissions to decrytion file
+            run: chmod +x ./decrypt_credentials.sh
           - name: Decrypt Dataform Credentials
             run: ./decrypt_credentials.sh 
             env:
