@@ -3,6 +3,8 @@ name: Dataform Compile
 on: 
   pull_request:
     branches: [ "main" ]
+  push:
+    branches: [ "main" ]
 
 jobs:
     compile:
@@ -15,10 +17,10 @@ jobs:
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
             with:
-              args:install
+                args: install
           - name: Run dataform compile
-            uses:docker://dataformco/dataform:2.8.3
+            uses: docker://dataformco/dataform:2.8.3
             with:
-              args:compile
+                args: compile
 
 
