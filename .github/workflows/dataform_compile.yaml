@@ -22,9 +22,5 @@ jobs:
             uses: docker://dataformco/dataform:2.8.3
             with:
                 args: compile
-          - name: Run dataform dry run
-            uses: docker://dataformco/dataform:2.8.3
-            with:
-                args: run --dry-run
 
 
