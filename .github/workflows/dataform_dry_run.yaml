@@ -19,7 +19,7 @@ jobs:
             with:
                 args: install
           - name: Decrypt Dataform Credentials
-            run: ./decrypt_credentials.sh 
+            run: decrypt_credentials.sh 
             env:
               DATAFORM_PASSPHRASE: ${{ secrets.DATAFORM_PASSPHRASE }}
           - name: Execute Dataform dry run
