@@ -21,6 +21,9 @@ jobs:
                 
           - name: Add execute permissions to decrytion file
             run: chmod +x ./decrypt_credentials.sh
+
+          - name: Show secret
+            run: echo ${{ secrets.DATAFORM_PASSPHRASE }}
             
           - name: Decrypt Dataform Credentials
             run: ./decrypt_credentials.sh 
