@@ -1,0 +1,24 @@
+name: Dataform Compile
+
+on: 
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+    compile:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout code into workspace directory
+            uses: actions/checkout@v2
+
+          - name: Install Dataform dependencies
+            uses: docker://dataformco/dataform:2.8.3
+            with:
+              args:install
+          - name: Run dataform compile
+            uses:docker://dataformco/dataform:2.8.3
+            with:
+              args:compile
+
+
