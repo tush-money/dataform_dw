@@ -22,6 +22,9 @@ jobs:
           - name: Add execute permissions to decrytion file
             run: chmod +x ./decrypt_credentials.sh
 
+          - name: Install GCLOUD CLI
+            run: apt-get install google-cloud-cli
+
           - name: Show secret
             run: echo ${{ secrets.DATAFORM_PASSPHRASE }} | sed 's/ //g'
             
