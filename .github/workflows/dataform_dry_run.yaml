@@ -28,9 +28,12 @@ jobs:
             with:
                 args: install
 
-          - name: Create credentials file & Change project_id to projectId
+          - name: Create credentials file 
             run: |
               cat $GOOGLE_GHA_CREDS_PATH > .df-credentials.json
+
+          - name: Change project_id to projectId
+            run: |
               sed -i 's/project_id/projectId/g' .df-credentials.json
   
           - name: Execute Dataform dry run
