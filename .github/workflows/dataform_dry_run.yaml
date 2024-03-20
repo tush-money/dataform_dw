@@ -9,27 +9,32 @@ on:
 jobs:
     compile:
         runs-on: ubuntu-latest
+        permissions:
+         contents: 'read'
+         id-token: 'write'
 
         steps:
           - name: Checkout code into workspace directory
-            uses: actions/checkout@v2
+            uses: actions/checkout@v4
+     
+          - name: Authenticate Google Cloud
+            uses: google-github-actions/auth@v2
+            with:
+              service_account: 'dataform-dev@tushensu-data.iam.gserviceaccount.com'
+              workload_identity_provider: 'projects/292560944911/locations/global/workloadIdentityPools/github/providers/my-repo'
 
+          - name: Create credentials file n 
+            run: |
+              mkdir github
+              mkdir github/workspace
+              touch github/workspace/.df-credentials.json
+              echo $GOOGLE_GHA_CREDS_PATH
+          
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
             with:
                 args: install
-                
-          - name: Add execute permissions to decrytion file
-            run: chmod +x ./decrypt_credentials.sh
-
-          - name: Show secret
-            run: echo ${{ secrets.DATAFORM_PASSPHRASE }} | sed 's/ //g'
-            
-          - name: Decrypt Dataform Credentials
-            run: ./decrypt_credentials.sh 
-            env:
-              DATAFORM_PASSPHRASE: ${{ secrets.DATAFORM_PASSPHRASE }}
-              
+    
           - name: Execute Dataform dry run
             uses: docker://dataformco/dataform:2.8.3
             with:
