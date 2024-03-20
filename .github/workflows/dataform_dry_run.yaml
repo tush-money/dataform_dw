@@ -16,10 +16,9 @@ jobs:
      
           - name : Authenticate Google Cloud
             uses: google-github-actions/auth@v2
-            env: 
-              GCP_SECRET: ${{ secrets.GCP_CREDENTIALS }}
             with:
-              credentials_json: $GCP_SECRET
+              project_id: 'tushensu-data'
+              workload_identity_provider: 'projects/292560944911/locations/global/workloadIdentityPools/github/providers/my-repo'
               
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
