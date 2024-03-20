@@ -21,7 +21,7 @@ jobs:
               name: "df-credentials.json"
               json: ${{ secrets.CYPRESS_CONFIG_JSON }}
      
-          - name : Authenticate GCP
+          - name : Authenticate Google Cloud
             id: 'auth'
             uses: 'google-github-actions/auth@v2'
             with:
