@@ -27,12 +27,7 @@ jobs:
             uses: docker://dataformco/dataform:2.8.3
             with:
                 args: install
-
-          - name: Create credentials file
-            uses: docker://dataformco/dataform:2.8.3
-            with:
-              args: init-creds bigquery
-    
+  
           - name: Execute Dataform dry run
             uses: docker://dataformco/dataform:2.8.3
             with:
