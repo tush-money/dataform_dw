@@ -27,6 +27,10 @@ jobs:
             uses: docker://dataformco/dataform:2.8.3
             with:
                 args: install
+
+          - name: Create credentials file 
+            run: |
+              cat $GOOGLE_GHA_CREDS_PATH > .df-credentials.json
   
           - name: Execute Dataform dry run
             uses: docker://dataformco/dataform:2.8.3
