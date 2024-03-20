@@ -28,7 +28,7 @@ jobs:
               mkdir github
               mkdir github/workspace
               touch github/workspace/.df-credentials.json
-              cp '$GOOGLE_GHA_CREDS_PATH' github/workspace/.df-credentials.json
+              cp '$GOOGLE_GHA_CREDS_PATH' 'github/workspace/.df-credentials.json'
           
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
