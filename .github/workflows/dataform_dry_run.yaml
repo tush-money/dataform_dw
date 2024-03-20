@@ -17,8 +17,10 @@ jobs:
           - name : Authenticate Google Cloud
             id: 'auth'
             uses: 'google-github-actions/auth@v2'
+            env: 
+              GCP_SECRET : ${{ secrets.GCP_CREDENTIALS }}
             with:
-              credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+              credentials_json: GCP_SECRET
               
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
