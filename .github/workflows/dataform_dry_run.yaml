@@ -19,7 +19,7 @@ jobs:
             uses: jsdaniell/create-json@1.1.2
             with:
               name: "df-credentials.json"
-              json: ${{ secrets.CYPRESS_CONFIG_JSON }}
+              json: ${{ secrets.GCP_CREDENTIALS }}
      
           - name : Authenticate Google Cloud
             id: 'auth'
