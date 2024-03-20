@@ -24,13 +24,11 @@ jobs:
               workload_identity_provider: 'projects/292560944911/locations/global/workloadIdentityPools/github/providers/my-repo'
 
           - name: Create credentials file 
-            env: 
-              GCP_CRED: "$GOOGLE_GHA_CREDS_PATH"
             run: |
               mkdir github
               mkdir github/workspace
               touch github/workspace/.df-credentials.json
-              cp GCP_CRED github/workspace/.df-credentials.json
+              cp '$GOOGLE_GHA_CREDS_PATH' github/workspace/.df-credentials.json
           
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
