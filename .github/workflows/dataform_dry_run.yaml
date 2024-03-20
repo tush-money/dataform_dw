@@ -17,11 +17,20 @@ jobs:
           - name: Checkout code into workspace directory
             uses: actions/checkout@v4
      
-          - name : Authenticate Google Cloud
+          - name: Authenticate Google Cloud
             uses: google-github-actions/auth@v2
             with:
               service_account: 'dataform-dev@tushensu-data.iam.gserviceaccount.com'
               workload_identity_provider: 'projects/292560944911/locations/global/workloadIdentityPools/github/providers/my-repo'
+
+          - name: Create credentials file 
+            env: 
+              GCP_CRED: "$GOOGLE_GHA_CREDS_PATH"
+            run: |
+              mkdir github
+              mkdir github/workspace
+              touch github/workspace/.df-credentials.json
+              cp GCP_CRED github/workspace/.df-credentials.json
           
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
