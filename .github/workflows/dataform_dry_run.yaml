@@ -23,7 +23,7 @@ jobs:
               service_account: 'dataform-dev@tushensu-data.iam.gserviceaccount.com'
               workload_identity_provider: 'projects/292560944911/locations/global/workloadIdentityPools/github/providers/my-repo'
 
-          - name: Create credentials file 
+          - name: Create credentials file n 
             run: |
               mkdir github
               mkdir github/workspace
