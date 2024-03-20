@@ -17,7 +17,7 @@ jobs:
           - name : Authenticate Google Cloud
             uses: google-github-actions/auth@v2
             with:
-              project_id: 'tushensu-data'
+              service_account: 'dataform-dev@tushensu-data.iam.gserviceaccount.com'
               workload_identity_provider: 'projects/292560944911/locations/global/workloadIdentityPools/github/providers/my-repo'
               
           - name: Install Dataform dependencies
