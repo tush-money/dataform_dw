@@ -13,29 +13,25 @@ jobs:
         steps:
           - name: Checkout code into workspace directory
             uses: actions/checkout@v2
+
+          - name: create-json
+            id: create-json
+            uses: jsdaniell/create-json@1.1.2
+            with:
+              name: "df-credentials.json"
+              json: ${{ secrets.CYPRESS_CONFIG_JSON }}
      
           - name : Authenticate GCP
             id: 'auth'
             uses: 'google-github-actions/auth@v2'
             with:
-              credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+              credentials_json: 'df-credentials'
               
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
             with:
                 args: install
-                
-          - name: Add execute permissions to decrytion file
-            run: chmod +x ./decrypt_credentials.sh
-
-          - name: Show secret
-            run: echo ${{ secrets.DATAFORM_PASSPHRASE }} | sed 's/ //g'
-            
-          - name: Decrypt Dataform Credentials
-            run: ./decrypt_credentials.sh 
-            env:
-              DATAFORM_PASSPHRASE: ${{ secrets.DATAFORM_PASSPHRASE }}
-              
+    
           - name: Execute Dataform dry run
             uses: docker://dataformco/dataform:2.8.3
             with:
