@@ -13,14 +13,20 @@ jobs:
         steps:
           - name: Checkout code into workspace directory
             uses: actions/checkout@v2
+
+          - name: Add execute permissions to decrytion file
+            run: chmod +x ./decrypt_credentials.sh
+            
+          - name: Decrypt Dataform Credentials
+            run: ./decrypt_credentials.sh 
+            env:
+              DATAFORM_PASSPHRASE: ${{ secrets.DATAFORM_PASSPHRASE }}
      
           - name : Authenticate Google Cloud
             id: 'auth'
             uses: 'google-github-actions/auth@v2'
-            env: 
-              GCP_SECRET : ${{ secrets.GCP_CREDENTIALS }}
             with:
-              credentials_json: GCP_SECRET
+              credentials_json: '.df-credentials.json'
               
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
