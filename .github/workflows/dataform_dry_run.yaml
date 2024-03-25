@@ -22,19 +22,20 @@ jobs:
             with:
               service_account: 'dataform-dev@tushensu-data.iam.gserviceaccount.com'
               workload_identity_provider: 'projects/292560944911/locations/global/workloadIdentityPools/github/providers/my-repo'
-
-          - name: Create credentials file n 
-            run: |
-              mkdir github
-              mkdir github/workspace
-              touch github/workspace/.df-credentials.json
-              cat $GOOGLE_GHA_CREDS_PATH >> github/workspace/.df-credentials.json
           
           - name: Install Dataform dependencies
             uses: docker://dataformco/dataform:2.8.3
             with:
                 args: install
-    
+
+          - name: Create credentials file 
+            run: |
+              cat $GOOGLE_GHA_CREDS_PATH > .df-credentials.json
+
+          - name: Change project_id to projectId
+            run: |
+              sed -i 's/project_id/projectId/g' .df-credentials.json
+  
           - name: Execute Dataform dry run
             uses: docker://dataformco/dataform:2.8.3
             with:
